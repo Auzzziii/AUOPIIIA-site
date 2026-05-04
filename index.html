@@ -1,92 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>AUOPIIIA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
   margin:0;
-  background:#050505;
-  color:#f2eee8;
+  background:black;
+  color:white;
   font-family:serif;
-  text-align:center;
 }
+
+/* LANDING */
 .landing{
   height:100vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
+  text-align:center;
 }
+
 .logo{
-  width:180px;
-  max-width:70%;
-  margin-bottom:25px;
+  width:80px;
+  margin-bottom:20px;
+  opacity:.9;
 }
-.pearly{
-  letter-spacing:.25em;
+
+.enter{
+  margin-top:20px;
+  font-size:12px;
+  letter-spacing:2px;
   opacity:.6;
 }
-button{
-  margin-top:18px;
-  background:none;
-  border:none;
-  color:#f2eee8;
-  letter-spacing:.35em;
-  font-family:serif;
-  font-size:14px;
-}
+
+/* FIELD */
 .field{
   display:none;
   padding:80px 20px;
 }
+
+/* ART BLOCK */
 .art{
   margin:140px auto;
   max-width:600px;
-  opacity:.75;
+  opacity:.7;
+  text-align:center;
 }
+
 .art:hover{
   opacity:1;
 }
-  .art img{
+
+.art img{
   width:100%;
+  max-width:520px;
   height:auto;
-  max-width:500px;
   display:block;
   margin:0 auto;
+  object-fit:contain;
 }
-}
+
 .title{
   margin-top:14px;
   opacity:.7;
+  font-size:14px;
 }
 </style>
 </head>
+
 <body>
-  <div class="landing" id="landing">
-  <img src="IMG_0179 2.jpg" class="logo">
-  <div class="pearly">pearly gate</div>
-  <button onclick="enter()">CROSS OVER</button>
+
+<!-- LANDING -->
+<div class="landing" id="landing">
+  <img src="IMG_0179 2.PNG" class="logo">
+  <div>pearly gate</div>
+  <div class="enter" onclick="enter()">CROSS OVER</div>
 </div>
 
+<!-- FIELD -->
 <div class="field" id="field">
 
-<img src="Bleached Sin 2.jpg"><br><br>
-<img src="Fuk Nature 2.jpg"><br><br>
-<img src="Innocence 2.jpg"><br><br>
-<img src="Real World 2.jpg"><br><br>
-<img src="Starlife 2.jpg"><br><br>
-<img src="Ugly King 2.jpg">
+  <div class="art">
+    <img src="Bleached Sin 2.jpg">
+    <div class="title">Bleached Sin</div>
+  </div>
+
+  <div class="art">
+    <img src="Fuk Nature 2.jpg">
+    <div class="title">Fuk Nature</div>
+  </div>
+
+  <div class="art">
+    <img src="Real World 2.jpg">
+    <div class="title">Real World</div>
+  </div>
+
+  <div class="art">
+    <img src="Innocence 2.jpg">
+    <div class="title">Innocence</div>
+  </div>
+
+  <div class="art">
+    <img src="Starlife 2.jpg">
+    <div class="title">Starlife</div>
+  </div>
+
+  <div class="art">
+    <img src="Ugly King 2.jpg">
+    <div class="title">Ugly King</div>
+  </div>
 
 </div>
-  <script>
+
+<script>
 function enter(){
-document.getElementById("landing").style.display="none";
-document.getElementById("field").style.display="block";
+  document.getElementById("landing").style.display="none";
+  document.getElementById("field").style.display="block";
 }
 </script>
 
 </body>
 </html>
-  
