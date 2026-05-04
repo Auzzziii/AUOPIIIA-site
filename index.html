@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AUOPIIIA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#050505;
+  color:#f2eee8;
+  font-family:serif;
+  text-align:center;
+}
+.landing{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+.logo{
+  width:180px;
+  max-width:70%;
+  margin-bottom:25px;
+}
+.pearly{
+  letter-spacing:.25em;
+  opacity:.6;
+}
+button{
+  margin-top:18px;
+  background:none;
+  border:none;
+  color:#f2eee8;
+  letter-spacing:.35em;
+  font-family:serif;
+  font-size:14px;
+}
+.field{
+  display:none;
+  padding:80px 20px;
+}
+.art{
+  margin:100px auto;
+  max-width:520px;
+  opacity:.75;
+}
+.art:hover{
+  opacity:1;
+}
+.art img{
+  width:100%;
+}
+.title{
+  margin-top:14px;
+  opacity:.7;
+}
+</style>
+</head>
+<body>
+  <div class="landing" id="landing">
+  <img src="IMG_0179 2.jpg" class="logo">
+  <div class="pearly">pearly gate</div>
+  <button onclick="enter()">CROSS OVER</button>
+</div>
+
+<div class="field" id="field">
+
+<img src="Bleached Sin 2.jpg"><br><br>
+<img src="Fuk Nature 2.jpg"><br><br>
+<img src="Innocence 2.jpg"><br><br>
+<img src="Real World 2.jpg"><br><br>
+<img src="Starlife 2.jpg"><br><br>
+<img src="Ugly King 2.jpg">
+
+</div>
+  <script>
+function enter(){
+document.getElementById("landing").style.display="none";
+document.getElementById("field").style.display="block";
+}
+</script>
+
+</body>
+</html>
+  
