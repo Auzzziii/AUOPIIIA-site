@@ -1,1 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AUOPIIIA</title>
 
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:#030303;
+  color:#e8e8e8;
+  font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-25%;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.035), transparent 26%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.025), transparent 28%),
+    radial-gradient(circle at 48% 85%, rgba(120,0,0,.04), transparent 30%);
+  filter:blur(32px);
+  animation:drift 32s ease-in-out infinite alternate;
+  pointer-events:none;
+  z-index:0;
+}
+
+@keyframes drift{
+  from{transform:translate(-2%,-1%) scale(1)}
+  to{transform:translate(2%,1.5%) scale(1.08)}
+}
+
+/* LANDING */
+.landing{
+  position:relative;
+  z-index:2;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:#030303;
+  transition:transform 1.2s cubic-bezier(.76,0,.24,1), opacity 1.2s ease, filter 1.2s ease;
+  transform-origin:center;
+}
+
+.landing.collapse{
+  transform:scale(.025);
+  opacity:0;
+  filter:blur(24px);
+}
+
+.logo{
+  width:min(330px,64vw);
+  opacity:0;
+  animation:logoIn 1.8s ease forwards, logoPulse 6.5s ease-in-out infinite;
+}
+
+@keyframes logoIn{to{opacity:.96}}
+
+@keyframes logoPulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 8px rgba(255,255,255,.04))}
+  50%{transform:scale(1.035);filter:drop-shadow(0 0 24px rgba(120,0,0,.2))}
+}
+
+.enter{
+  margin-top:58px;
+  font-size:11px;
+  letter-spacing:.46em;
+  opacity:0;
+  cursor:pointer;
+  animation:enterIn 1.4s ease forwards 1.1s;
+  transition:opacity .5s ease, text-shadow .7s ease, transform .7s ease;
+}
+
+@keyframes enterIn{to{opacity:.58}}
+
+.enter:hover{
+  opacity:1;
+  transform:translateY(-1px);
+  text-shadow:0 0 18px rgba(160,0,0,.75),0 0 44px rgba(160,0,0,.35);
+}
+
+.enter.activated{
+  opacity:1;
+  text-shadow:0 0 36px rgba(200,0,0,.95),0 0 90px rgba(200,0,0,.55);
+}
+
+/* ARCHIVE */
+.archive{
+  display:none;
+  position:relative;
+  z-index:2;
+  min-height:100vh;
+  padding:34px 18px 140px;
+}
+
+.archive.show{
+  display:block;
+  animation:archiveIn 1.4s ease forwards;
+}
+
+@keyframes archiveIn{
+  from{opacity:0;filter:blur(12px)}
+  to{opacity:1;filter:blur(0)}
+}
+
+/* TOP BAR */
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  justify-content:flex-end;
+  padding:20px 18px 40px;
+  background:linear-gradient(to bottom,rgba(3,3,3,.92),rgba(3,3,3,0));
+}
+
+.contact-wrap{
+  text-align:right;
+}
+
+.contact{
+  border:none;
+  background:none;
+  color:rgba(232,232,232,.58);
+  font-family:inherit;
+  font-size:11px;
+  letter-spacing:.32em;
+  cursor:pointer;
+}
+
+.email{
+  margin-top:10px;
+  font-size:11px;
+  letter-spacing:.12em;
+  color:rgba(232,232,232,.42);
+  opacity:0;
+  transition:opacity .5s ease;
+}
+
+.email.show{opacity:1}
+
+/* SIGNAL */
+.signal-section{
+  height:55vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+}
+
+.signal-section.show{
+  animation:signalIn 1.2s ease forwards;
+}
+
+@keyframes signalIn{to{opacity:1}}
+
+.signal-word{
+  display:flex;
+  align-items:center;
+  gap:.55em;
+  color:#8b0000;
+  font-size:clamp(18px,4vw,42px);
+  font-weight:400;
+  letter-spacing:0;
+  filter:drop-shadow(0 0 10px rgba(150,0,0,.55));
+}
+
+.signal-word span{
+  display:inline-block;
+  animation:beat 3.2s ease-in-out infinite;
+}
+
+.signal-word span:nth-child(1){animation-delay:0s}
+.signal-word span:nth-child(2){animation-delay:.08s}
+.signal-word span:nth-child(3){animation-delay:.16s}
+.signal-word span:nth-child(4){animation-delay:.24s}
+.signal-word span:nth-child(5){animation-delay:.32s}
+.signal-word span:nth-child(6){animation-delay:.40s}
+.signal-word span:nth-child(7){animation-delay:.48s}
+.signal-word span:nth-child(8){animation-delay:.56s}
+
+@keyframes beat{
+  0%,100%{transform:translateY(0) scale(1);opacity:.42}
+  12%{transform:translateY(-8px) scale(1.04);opacity:.95}
+  20%{transform:translateY(5px) scale(.98);opacity:.7}
+  34%{transform:translateY(0) scale(1);opacity:.55}
+}
+
+/* GALLERY */
+.gallery{
+  max-width:980px;
+  margin:0 auto;
+}
+
+.art{
+  margin:0 auto 190px;
+  text-align:center;
+  opacity:.82;
+  transform:translateY(22px);
+  transition:opacity .8s ease, transform .9s ease, filter .8s ease;
+}
+
+.art:hover{
+  opacity:1;
+  transform:translateY(0);
+  filter:drop-shadow(0 0 30px rgba(255,255,255,.035));
+}
+
+.art img{
+  width:100%;
+  max-width:760px;
+  max-height:82vh;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  margin:0 auto;
+  cursor:pointer;
+}
+
+.title{
+  margin-top:24px;
+  font-size:12px;
+  letter-spacing:.22em;
+  color:rgba(232,232,232,.6);
+}
+
+.subtitle{
+  margin-top:9px;
+  font-size:10px;
+  letter-spacing:.26em;
+  color:rgba(232,232,232,.34);
+}
+
+/* VIEWER */
+.viewer{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.95);
+  padding:22px;
+}
+
+.viewer.open{display:flex}
+
+.viewer img{
+  max-width:96vw;
+  max-height:88vh;
+  object-fit:contain;
+}
+
+.close{
+  position:fixed;
+  top:22px;
+  right:24px;
+  border:none;
+  background:none;
+  color:rgba(255,255,255,.75);
+  font-size:28px;
+  cursor:pointer;
+}
+
+@media(max-width:700px){
+  .logo{width:min(270px,70vw)}
+  .enter{font-size:10px;letter-spacing:.38em;margin-top:48px}
+  .signal-section{height:42vh}
+  .art{margin-bottom:135px}
+  .art img{max-width:92vw;max-height:none}
+  .title{font-size:11px;letter-spacing:.18em}
+}
+</style>
+</head>
+
+<body>
+
+<section class="landing" id="landing">
+  <img src="IMG_0245.webp" class="logo" alt="AUOPIIIA symbol">
+  <div class="enter" id="enterButton" onclick="enterSite()">CROSS OVER</div>
+</section>
+
+<section class="archive" id="archive">
+
+  <div class="topbar">
+    <div class="contact-wrap">
+      <button class="contact" onclick="toggleContact()">CONTACT</button>
+      <div class="email" id="email">auopiiia@gmail.com</div>
+    </div>
+  </div>
+
+  <div class="signal-section" id="signal">
+    <div class="signal-word" aria-label="A U O P I I I A">
+      <span>A</span><span>U</span><span>O</span><span>P</span><span>I</span><span>I</span><span>I</span><span>A</span>
+    </div>
+  </div>
+
+  <div class="gallery">
+
+    <div class="art">
+      <img src="THE STARBORN CHILD.webp" alt="THE STARBORN CHILD">
+      <div class="title">THE STARBORN CHILD</div>
+      <div class="subtitle">III•3303</div>
+    </div>
+
+    <div class="art">
+      <img src="THE INNER WEATHER.webp" alt="THE INNER WEATHER">
+      <div class="title">THE INNER WEATHER</div>
+    </div>
+
+    <div class="art">
+      <img src="THE IMPOSSIBLE HEAVEN.webp" alt="THE IMPOSSIBLE HEAVEN">
+      <div class="title">THE IMPOSSIBLE HEAVEN</div>
+    </div>
+
+    <div class="art">
+      <img src="THE OFFERING.webp" alt="THE OFFERING">
+      <div class="title">THE OFFERING</div>
+    </div>
+
+    <div class="art">
+      <img src="THE VISITATION.webp" alt="THE VISITATION">
+      <div class="title">THE VISITATION</div>
+    </div>
+
+    <div class="art">
+      <img src="THE. LAST. CROWN..webp" alt="THE. LAST. CROWN.">
+      <div class="title">THE. LAST. CROWN.</div>
+    </div>
+
+    <div class="art">
+      <img src="THE REMNANT.webp" alt="THE REMNANT">
+      <div class="title">THE REMNANT</div>
+    </div>
+
+    <div class="art">
+      <img src="THE MOUTH OF SPRING.webp" alt="THE MOUTH OF SPRING">
+      <div class="title">THE MOUTH OF SPRING</div>
+    </div>
+
+    <div class="art">
+      <img src="WAITING IN BLOOM.webp" alt="WAITING IN BLOOM">
+      <div class="title">WAITING IN BLOOM</div>
+    </div>
+
+    <div class="art">
+      <img src="THE OTHER OCCUPANT.webp" alt="THE OTHER OCCUPANT">
+      <div class="title">THE OTHER OCCUPANT</div>
+    </div>
+
+    <div class="art">
+      <img src="THE WITNESS.webp" alt="THE WITNESS">
+      <div class="title">THE WITNESS</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="viewer" id="viewer" onclick="closeViewer()">
+  <button class="close" onclick="closeViewer()">×</button>
+  <img id="viewerImg" src="" alt="">
+</div>
+
+<script>
+let audioStarted=false;
+let audioContext;
+let humGain;
+
+function startHum(){
+  if(audioStarted) return;
+  audioStarted=true;
+
+  audioContext=new (window.AudioContext||window.webkitAudioContext)();
+
+  const osc1=audioContext.createOscillator();
+  const osc2=audioContext.createOscillator();
+  humGain=audioContext.createGain();
+
+  osc1.type="sine";
+  osc2.type="sine";
+  osc1.frequency.value=42;
+  osc2.frequency.value=57;
+
+  humGain.gain.value=.0001;
+
+  osc1.connect(humGain);
+  osc2.connect(humGain);
+  humGain.connect(audioContext.destination);
+
+  osc1.start();
+  osc2.start();
+
+  humGain.gain.exponentialRampToValueAtTime(.018,audioContext.currentTime+2.5);
+}
+
+function enterSite(){
+  startHum();
+
+  const landing=document.getElementById("landing");
+  const archive=document.getElementById("archive");
+  const enterButton=document.getElementById("enterButton");
+  const signal=document.getElementById("signal");
+
+  enterButton.classList.add("activated");
+  landing.classList.add("collapse");
+
+  setTimeout(()=>{
+    landing.style.display="none";
+    archive.classList.add("show");
+    window.scrollTo(0,0);
+  },1050);
+
+  setTimeout(()=>{
+    signal.classList.add("show");
+  },1550);
+}
+
+function toggleContact(){
+  document.getElementById("email").classList.toggle("show");
+}
+
+document.querySelectorAll(".art img").forEach(img=>{
+  img.addEventListener("click",function(e){
+    e.stopPropagation();
+    document.getElementById("viewerImg").src=this.src;
+    document.getElementById("viewer").classList.add("open");
+  });
+});
+
+function closeViewer(){
+  document.getElementById("viewer").classList.remove("open");
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeViewer();
+});
+</script>
+
+</body>
+</html>
