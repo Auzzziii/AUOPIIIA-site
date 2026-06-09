@@ -1,1 +1,166 @@
-Download auopiiia-live-prototype.html⁠￼
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUOPIIIA</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#020202;
+  color:white;
+  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  overflow:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  background:
+    radial-gradient(circle at 25% 30%,rgba(255,255,255,.035),transparent 28%),
+    radial-gradient(circle at 70% 60%,rgba(100,0,0,.06),transparent 34%);
+  filter:blur(40px);
+  animation:move 34s infinite alternate ease-in-out;
+}
+@keyframes move{
+  from{transform:translate(-2%,-1%) scale(1)}
+  to{transform:translate(2%,2%) scale(1.08)}
+}
+.landing{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:1.4s cubic-bezier(.7,0,.2,1);
+}
+.landing.out{
+  transform:scale(.02);
+  opacity:0;
+  filter:blur(25px);
+}
+.logo{
+  width:min(340px,65vw);
+  animation:pulse 5.5s infinite ease-in-out;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 4px rgba(130,0,0,.1))}
+  50%{transform:scale(1.035);filter:drop-shadow(0 0 24px rgba(130,0,0,.35))}
+}
+.enter{
+  margin-top:55px;
+  font-size:11px;
+  letter-spacing:.45em;
+  opacity:0;
+  cursor:pointer;
+  animation:appear 1.5s forwards 1s;
+  transition:.5s;
+}
+.enter:hover{
+  opacity:1;
+  text-shadow:0 0 18px #900,0 0 45px #600;
+}
+@keyframes appear{to{opacity:.6}}
+
+.signalPage{
+  display:none;
+  height:100vh;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.signalPage.show{
+  display:flex;
+  animation:fade 1.2s forwards;
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.signal{
+  position:relative;
+  width:92vw;
+  max-width:950px;
+  height:220px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.word{
+  position:absolute;
+  display:flex;
+  gap:.34em;
+  font-size:clamp(38px,8vw,92px);
+  font-weight:400;
+  color:rgba(150,0,0,.26);
+}
+.word span{
+  animation:wake 7s infinite;
+}
+.word span:nth-child(1){animation-delay:2.1s}
+.word span:nth-child(2){animation-delay:2.35s}
+.word span:nth-child(3){animation-delay:2.6s}
+.word span:nth-child(4){animation-delay:2.85s}
+.word span:nth-child(5){animation-delay:3.1s}
+.word span:nth-child(6){animation-delay:3.35s}
+.word span:nth-child(7){animation-delay:3.6s}
+.word span:nth-child(8){animation-delay:3.85s}
+
+@keyframes wake{
+  0%,100%{color:rgba(110,0,0,.18);text-shadow:none}
+  10%{color:#d40000;text-shadow:0 0 8px #900,0 0 24px #600}
+  45%{color:rgba(180,0,0,.65)}
+}
+
+svg{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+.ecg{
+  fill:none;
+  stroke:#a00000;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 8px #800);
+  stroke-dasharray:1400;
+  stroke-dashoffset:1400;
+  animation:draw 7s infinite cubic-bezier(.75,0,.25,1);
+}
+@keyframes draw{
+  0%{stroke-dashoffset:1400;opacity:0}
+  12%{opacity:1}
+  60%{stroke-dashoffset:0;opacity:1}
+  100%{stroke-dashoffset:-1400;opacity:0}
+}
+</style>
+</head>
+<body>
+
+<div class="landing" id="landing">
+  <img class="logo" src="IMG_0245.webp">
+  <div class="enter" onclick="crossOver()">CROSS OVER</div>
+</div>
+
+<div class="signalPage" id="signalPage">
+  <div class="signal">
+    <svg viewBox="0 0 900 180">
+      <path class="ecg" d="M20 90 H160 L178 58 L196 132 L220 38 L246 118 L270 90 H880"/>
+    </svg>
+    <div class="word">
+      <span>A</span><span>U</span><span>O</span><span>P</span><span>I</span><span>I</span><span>I</span><span>A</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function crossOver(){
+  document.getElementById("landing").classList.add("out");
+  setTimeout(()=>{
+    document.getElementById("landing").style.display="none";
+    document.getElementById("signalPage").classList.add("show");
+  },1200);
+}
+</script>
+
+</body>
+</html>
